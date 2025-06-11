@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Profile</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, color 0.3s;
+            padding-top: 2rem;
+        }
+        .profile-box {
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            position: relative;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 0.7rem 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1rem;
+            background-color: #aaa;
+            color: #222;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #888;
+        }
+        .profile-box p {
+            margin-bottom: 1rem;
+        }
+        .profile-box a {
+            padding: 0.7rem 1.2rem;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .profile-box a:hover {
+            background-color: #c0392b;
+        }
+
+        /* DARK MODE */
+        body.dark {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+        body.dark .profile-box {
+            background-color: #1e1e1e;
+            box-shadow: 0 0 15px rgba(255, 76, 76, 0.3);
+        }
+        body.dark .back-button {
+            background-color: #444;
+            color: #ccc;
+        }
+        body.dark .back-button:hover {
+            background-color: #666;
+        }
+        body.dark .profile-box a {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        /* LIGHT MODE */
+        body.light {
+            background-color: #f9f9f9;
+            color: #111;
+        }
+        body.light .profile-box {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        body.light .back-button {
+            background-color: #ddd;
+            color: #111;
+        }
+        body.light .back-button:hover {
+            background-color: #bbb;
+        }
+        body.light .profile-box a {
+            background-color: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('index') }}" class="back-button">← Back</a>
+    <div class="profile-box">
+        <h2>👤 Profile</h2>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <a href="{{ url_for('logout') }}">Logout 🔒</a>
+    </div>
+
+<script>
+(function () {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.body.classList.add(saved || (prefersDark ? 'dark' : 'light'));
+})();
+</script>
+
+</body>
+</html>
