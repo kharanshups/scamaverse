@@ -63,10 +63,6 @@ Scamaverse is a minimal and stylish web app that lets users report and explore s
     
     python3 app.py
 
-5. Visit
-
-    http://127.0.0.1:5000/
-    
 
 scamaverse/
 │
